@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Sans, DM_Serif_Display, DM_Mono } from "next/font/google";
 import "./globals.css";
+import PageTransition from "@/components/PageTransition";
 
 const instrumentSans = Instrument_Sans({ 
   subsets: ["latin"],
@@ -34,7 +35,9 @@ export default function RootLayout({
       <body
         className={`${instrumentSans.variable} ${dmSerifDisplay.variable} ${dmMono.variable} antialiased`}
       >
-        {children}
+        <PageTransition>
+          {children}
+        </PageTransition>
       </body>
     </html>
   );

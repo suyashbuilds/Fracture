@@ -258,16 +258,16 @@ export default function FractureDashboard() {
           </div>
           
           <div className="flex flex-wrap items-center gap-2 z-10">
-            <motion.button onClick={handleBreakIt} disabled={isLoading} className="flex items-center gap-1.5 font-sans font-semibold text-[11px] bg-[#0b1018] text-[#dce8f0] border border-[#1a2535] px-3 py-1.5 rounded-md disabled:opacity-50 hover:bg-[#1a2535] transition-colors">
+            <motion.button onClick={handleBreakIt} disabled={isLoading} whileTap={{ scale: 0.97 }} whileHover={{ backgroundColor: "rgba(61,255,160,0.15)" }} className="flex items-center gap-1.5 font-sans font-semibold text-[11px] bg-[#0b1018] text-[#dce8f0] border border-[#1a2535] px-3 py-1.5 rounded-md disabled:opacity-50 hover:bg-[#1a2535] transition-colors">
               <AlertTriangle className="w-3 h-3 text-red-400" /> Break It
             </motion.button>
-            <motion.button onClick={handleAnalyzeComplexity} disabled={isLoading} className="flex items-center gap-1.5 font-sans font-semibold text-[11px] bg-[#0b1018] text-[#3dffa0] border border-[#1a2535] px-3 py-1.5 rounded-md disabled:opacity-50 hover:bg-[#1a2535] transition-colors">
+            <motion.button onClick={handleAnalyzeComplexity} disabled={isLoading} whileTap={{ scale: 0.97 }} whileHover={{ backgroundColor: "rgba(61,255,160,0.15)" }} className="flex items-center gap-1.5 font-sans font-semibold text-[11px] bg-[#0b1018] text-[#3dffa0] border border-[#1a2535] px-3 py-1.5 rounded-md disabled:opacity-50 hover:bg-[#1a2535] transition-colors">
               <Activity className="w-3 h-3" /> Analyze
             </motion.button>
-            <motion.button onClick={handleOptimize} disabled={isLoading} className="flex items-center gap-1.5 font-sans font-semibold text-[11px] bg-[#0b1018] text-yellow-400 border border-[#1a2535] px-3 py-1.5 rounded-md disabled:opacity-50 hover:bg-[#1a2535] transition-colors">
+            <motion.button onClick={handleOptimize} disabled={isLoading} whileTap={{ scale: 0.97 }} whileHover={{ backgroundColor: "rgba(61,255,160,0.15)" }} className="flex items-center gap-1.5 font-sans font-semibold text-[11px] bg-[#0b1018] text-yellow-400 border border-[#1a2535] px-3 py-1.5 rounded-md disabled:opacity-50 hover:bg-[#1a2535] transition-colors">
               <Zap className="w-3 h-3" /> Optimize → C++
             </motion.button>
-            <motion.button onClick={handleRunCode} disabled={isLoading} className="flex items-center gap-1.5 font-sans font-semibold text-[11px] bg-white text-[#05090e] px-4 py-1.5 rounded-md disabled:opacity-50 hover:bg-[#dce8f0] transition-colors shadow-md">
+            <motion.button onClick={handleRunCode} disabled={isLoading} whileTap={{ scale: 0.97 }} whileHover={{ backgroundColor: "rgba(61,255,160,0.15)" }} className="flex items-center gap-1.5 font-sans font-semibold text-[11px] bg-white text-[#05090e] px-4 py-1.5 rounded-md disabled:opacity-50 hover:bg-[#dce8f0] transition-colors shadow-md">
               <Play className="w-3 h-3 fill-[#05090e]" /> Run
             </motion.button>
           </div>
@@ -285,7 +285,7 @@ export default function FractureDashboard() {
                 </motion.div>
               )}
               {output && (
-                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full font-mono text-[13.5px] whitespace-pre-wrap leading-loose text-[#dce8f0] relative z-10">
+                <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} transition={{ duration: 0.35 }} className="w-full font-mono text-[13.5px] whitespace-pre-wrap leading-loose text-[#dce8f0] relative z-10 overflow-hidden">
                   <div className="pl-5 border-l-[2px] border-[#3dffa0]/40 relative py-1">
                     <div className={`absolute -left-[3px] top-3 w-[4px] h-[4px] rounded-full ${executionStats.error ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]' : 'bg-[#3dffa0] shadow-[0_0_8px_rgba(61,255,160,0.8)]'}`} />
                     {output}
@@ -310,23 +310,23 @@ export default function FractureDashboard() {
                   Detected: {complexityClass}
                 </div>
               </div>
-              <div className="flex-1 min-h-[250px] w-full mt-4">
+              <motion.div initial={{ opacity: 0, scaleX: 0.95 }} animate={{ opacity: 1, scaleX: 1 }} transition={{ duration: 0.3 }} className="flex-1 min-h-[250px] w-full mt-4">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={telemetryData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                     <XAxis dataKey="n" stroke="#dce8f040" tick={{ fill: '#dce8f080', fontSize: 11 }} tickFormatter={(val) => `${val >= 1000 ? val / 1000 + 'k' : val}`} />
                     <YAxis stroke="#dce8f040" tick={{ fill: '#dce8f080', fontSize: 11 }} tickFormatter={(val) => `${val}ms`} />
-                    <Tooltip contentStyle={{ backgroundColor: '#0b1018', border: '1px solid #1a2535', borderRadius: '8px' }} itemStyle={{ color: '#3dffa0', fontFamily: 'monospace' }} labelStyle={{ color: '#dce8f0', marginBottom: '4px' }} />
+                    <Tooltip contentStyle={{ backgroundColor: '#0b1018', border: '1px solid #1a2535', borderRadius: '8px', fontSize: '12px' }} itemStyle={{ color: '#3dffa0' }} />
                     <Line type="monotone" dataKey="ms" stroke="#3dffa0" strokeWidth={2} dot={{ fill: '#05090e', stroke: '#3dffa0', strokeWidth: 2, r: 4 }} activeDot={{ r: 6, fill: '#3dffa0' }} />
                   </LineChart>
                 </ResponsiveContainer>
-              </div>
+              </motion.div>
             </motion.div>
           )}
 
           {activeMode === 'breaker' && breakerCases && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-col gap-6 relative z-10">
               {breakerCases.map((c, i) => (
-                <div key={i} className="bg-[#0b1018] border border-[#1a2535] rounded-xl p-5 shadow-lg">
+                <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1, duration: 0.3 }} className="bg-[#0b1018] border border-[#1a2535] rounded-xl p-5 shadow-lg">
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="text-[#3dffa0] font-mono text-[13px] font-bold">{c.name}</h3>
                     <button onClick={() => handleRunEdgeCase(i)} disabled={c.isRunning} className="bg-[#1a2535] text-[#dce8f0] px-4 py-1.5 rounded-md text-xs font-medium hover:bg-[#3dffa0] hover:text-[#05090e] transition-colors disabled:opacity-50">
@@ -342,7 +342,7 @@ export default function FractureDashboard() {
                       {c.runResult}
                     </div>
                   )}
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           )}

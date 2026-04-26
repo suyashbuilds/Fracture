@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 export default function LandingPage() {
   const fadeUp: any = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
   };
 
   return (
@@ -33,7 +33,7 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center pt-32 pb-20 px-6 text-center max-w-4xl mx-auto">
-        <motion.div initial="hidden" animate="visible" variants={fadeUp} className="flex flex-col items-center">
+        <motion.div initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, ease: "easeOut" }} className="flex flex-col items-center">
           <span className="text-[#e84b2a] font-mono text-sm tracking-widest uppercase mb-6 border border-[#e84b2a]/20 bg-[#e84b2a]/10 px-4 py-1.5 rounded-full">
             Initial Release
           </span>
@@ -53,24 +53,24 @@ export default function LandingPage() {
 
       {/* The Problem Grid */}
       <motion.section 
-        initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUp}
+        initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
         className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto mb-32"
       >
-        <div className="bg-[#1a1a1a] border border-[#2a2a2a] p-8 rounded-xl hover:border-[#444] transition-colors">
+        <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="bg-[#1a1a1a] border border-[#2a2a2a] p-8 rounded-xl hover:border-[#444] transition-colors">
           <div className="font-mono text-xs text-[#e84b2a] mb-4 tracking-widest">01</div>
           <h3 className="font-serif text-2xl mb-4">The Illusion of Correctness</h3>
           <p className="text-[#f5f3ef]/60 text-sm leading-relaxed">Passing standard test cases does not guarantee safety. True application stress involves adversarial inputs and memory threshold breaking.</p>
-        </div>
-        <div className="bg-[#1a1a1a] border border-[#2a2a2a] p-8 rounded-xl hover:border-[#444] transition-colors">
+        </motion.div>
+        <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="bg-[#1a1a1a] border border-[#2a2a2a] p-8 rounded-xl hover:border-[#444] transition-colors">
           <div className="font-mono text-xs text-[#e84b2a] mb-4 tracking-widest">02</div>
           <h3 className="font-serif text-2xl mb-4">The Limits of AI</h3>
           <p className="text-[#f5f3ef]/60 text-sm leading-relaxed">LLMs write convincing code, but cannot benchmark the latency of their algorithms under load. You need runtime telemetry.</p>
-        </div>
-        <div className="bg-[#1a1a1a] border border-[#2a2a2a] p-8 rounded-xl hover:border-[#444] transition-colors">
+        </motion.div>
+        <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="bg-[#1a1a1a] border border-[#2a2a2a] p-8 rounded-xl hover:border-[#444] transition-colors">
           <div className="font-mono text-xs text-[#e84b2a] mb-4 tracking-widest">03</div>
           <h3 className="font-serif text-2xl mb-4">The Optimization Wall</h3>
           <p className="text-[#f5f3ef]/60 text-sm leading-relaxed">When an O(N^2) solution hits production, user experience halts. Finding the bottleneck retroactively is expensive.</p>
-        </div>
+        </motion.div>
       </motion.section>
 
       {/* Decorative Fracture Divider */}
