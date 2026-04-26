@@ -6,17 +6,13 @@ import { Play, TerminalSquare, Code2, CheckCircle2, Loader2, XCircle, Activity, 
 import { motion, AnimatePresence } from "framer-motion";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-const BOILERPLATE_CODE = `def find_duplicates(nums):
-    # Brute force approach O(n^2)
-    # This will fail under heavy constraints
-    duplicates = []
-    for i in range(len(nums)):
-        for j in range(i + 1, len(nums)):
-            if nums[i] == nums[j] and nums[i] not in duplicates:
-                duplicates.append(nums[i])
-    return duplicates
-
-# Execute test
+const BOILERPLATE_CODE = `def find_duplicates(arr):
+    result = []
+    for i in range(len(arr)):
+        for j in range(i + 1, len(arr)):
+            if arr[i] == arr[j]:
+                result.append(arr[i])
+    return result
 print(find_duplicates([1, 2, 3, 2, 4, 5, 5, 1]))`;
 
 export default function FractureDashboard() {
